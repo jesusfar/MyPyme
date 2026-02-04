@@ -1,0 +1,43 @@
+services:
+  app:
+    build: .
+    container_name: mypyme-app
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mypyme-db:3306/gestion_stock?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC&createDatabaseIfNotExist=true
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root
+    depends_on:
+      mypyme-db:
+        condition: service_healthy
+    networks:
+      - mypyme-network
+    restart: always
+
+  mypyme-db:
+    image: mysql:8.0
+    container_name: mypyme-db
+    ports:
+      - "3307:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=gestion_stock
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - mypyme-network
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      timeout: 20s
+      retries: 10
+    restart: always
+
+volumes:
+  mysql-data:
+
+
+networks:
+  mypyme-network:
+    driver: bridge

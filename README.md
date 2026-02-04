@@ -50,6 +50,19 @@ cd MyPyme
 ./mvnw spring-boot:run -Dspring-boot.run.profiles=dev
 ```
 
+## 🐳 Docker (Recomendado)
+
+Ejecuta toda la aplicación (Backend + Frontend + Base de Datos) con un solo comando:
+
+```bash
+docker-compose up -d --build
+```
+
+Esto levantará:
+- **Aplicación**: http://localhost:8080
+- **Base de Datos**: MySQL 8.0 (Puerto 3307)
+
+
 ## 📡 Endpoints API
 
 | Recurso | URL Base |
