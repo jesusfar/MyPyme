@@ -1,0 +1,117 @@
+# Sistema de Gestión de Stock - MyPyme
+
+server:
+  port: 8080
+  servlet:
+    context-path: /
+
+spring:
+  application:
+    name: sistema-gestion-stock
+  
+  # Configuración de Base de Datos
+  datasource:
+    # Configuración MySQL (Producción)
+    url: jdbc:mysql://localhost:3306/gestion_stock?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true&createDatabaseIfNotExist=true
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    
+    # Pool de Conexiones
+    hikari:
+      connection-timeout: 20000
+      maximum-pool-size: 10
+      minimum-idle: 5
+      idle-timeout: 300000
+      max-lifetime: 1200000
+      pool-name: GestionStockPool
+  
+  # Configuración JPA/Hibernate
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.MySQLDialect
+        jdbc:
+          time_zone: UTC
+    open-in-view: false
+  
+  # Configuración JSON Jackson
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+    date-format: yyyy-MM-dd'T'HH:mm:ss
+    time-zone: UTC
+
+# Configuración de Logs
+logging:
+  level:
+    root: INFO
+    com.mypyme.gestionstock: DEBUG
+    org.springframework.web: INFO
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
+
+# Configuración SpringDoc OpenAPI
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    enabled: true
+    operations-sorter: method
+    tags-sorter: alpha
+
+# Propiedades Personalizadas de la Aplicación
+app:
+  nombre: Sistema de Gestión de Stock
+  version: 1.0.0
+  descripcion: Sistema de Gestión de Stock para MyPyme
+
+---
+# Perfil de Desarrollo
+spring:
+  config:
+    activate:
+      on-profile: dev
+  
+  datasource:
+    url: jdbc:h2:mem:stockdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    username: sa
+    password: 
+    driver-class-name: org.h2.Driver
+  
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+  
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+
+---
+# Perfil de Producción
+spring:
+  config:
+    activate:
+      on-profile: prod
+  
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+  
+logging:
+  level:
+    root: WARN
+    com.mypyme.gestionstock: INFO
+    org.hibernate.SQL: WARN

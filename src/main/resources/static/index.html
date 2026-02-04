@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyPyme - Sistema de Gestión de Stock</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-logo">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="url(#gradient)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M2 17L12 22L22 17" stroke="url(#gradient)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M2 12L12 17L22 12" stroke="url(#gradient)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <defs>
+                        <linearGradient id="gradient" x1="2" y1="2" x2="22" y2="22">
+                            <stop stop-color="#0070f3"/>
+                            <stop offset="1" stop-color="#7928ca"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+                <span>MyPyme Stock</span>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <div class="nav-section-title">Principal</div>
+                    <a href="#" class="nav-item active" data-page="dashboard">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="3" width="7" height="7" rx="1"/>
+                            <rect x="14" y="3" width="7" height="7" rx="1"/>
+                            <rect x="3" y="14" width="7" height="7" rx="1"/>
+                            <rect x="14" y="14" width="7" height="7" rx="1"/>
+                        </svg>
+                        Dashboard
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <div class="nav-section-title">Inventario</div>
+                    <a href="#" class="nav-item" data-page="articulos">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                        </svg>
+                        Artículos
+                    </a>
+                    <a href="#" class="nav-item" data-page="categorias">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
+                        </svg>
+                        Categorías
+                    </a>
+                    <a href="#" class="nav-item" data-page="ubicaciones">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                            <circle cx="12" cy="10" r="3"/>
+                        </svg>
+                        Ubicaciones
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <div class="nav-section-title">Operaciones</div>
+                    <a href="#" class="nav-item" data-page="movimientos">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
+                            <polyline points="17 6 23 6 23 12"/>
+                        </svg>
+                        Movimientos
+                    </a>
+                    <a href="#" class="nav-item" data-page="conteos">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 11l3 3L22 4"/>
+                            <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+                        </svg>
+                        Conteos
+                    </a>
+                    <a href="#" class="nav-item" data-page="planificadores">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                            <line x1="16" y1="2" x2="16" y2="6"/>
+                            <line x1="8" y1="2" x2="8" y2="6"/>
+                            <line x1="3" y1="10" x2="21" y2="10"/>
+                        </svg>
+                        Planificadores
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <div class="nav-section-title">Análisis</div>
+                    <a href="#" class="nav-item" data-page="reportes">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="18" y1="20" x2="18" y2="10"/>
+                            <line x1="12" y1="20" x2="12" y2="4"/>
+                            <line x1="6" y1="20" x2="6" y2="14"/>
+                        </svg>
+                        Reportes
+                    </a>
+                </div>
+            </nav>
+            
+            <div class="sidebar-footer" style="padding-top: var(--spacing-lg); border-top: 1px solid var(--border-color);">
+                <div style="font-size: 0.75rem; color: var(--text-tertiary);">
+                    v1.0.0 · API Running
+                    <span style="display: inline-block; width: 6px; height: 6px; background: var(--accent-success); border-radius: 50%; margin-left: 4px;"></span>
+                </div>
+            </div>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="main-content" id="mainContent">
+            <!-- Dashboard Page (Default) -->
+            <div class="page" id="page-dashboard">
+                <header class="page-header">
+                    <div>
+                        <h1 class="page-title">Dashboard</h1>
+                        <p class="page-subtitle">Resumen general del inventario</p>
+                    </div>
+                    <div class="search-container">
+                        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"/>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                        </svg>
+                        <input type="text" class="search-input" placeholder="Buscar...">
+                    </div>
+                </header>
+                
+                <!-- Stats Cards -->
+                <div class="stats-grid">
+                    <div class="card animate-slide-up" style="animation-delay: 0ms;">
+                        <div class="card-header">
+                            <span class="card-title">Total Artículos</span>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent-primary)" stroke-width="2">
+                                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                            </svg>
+                        </div>
+                        <div class="card-value" id="stat-total-articulos">--</div>
+                        <div class="card-change positive">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
+                            </svg>
+                            Activo
+                        </div>
+                    </div>
+                    
+                    <div class="card animate-slide-up" style="animation-delay: 50ms;">
+                        <div class="card-header">
+                            <span class="card-title">Valor Total Stock</span>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent-success)" stroke-width="2">
+                                <line x1="12" y1="1" x2="12" y2="23"/>
+                                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                            </svg>
+                        </div>
+                        <div class="card-value" id="stat-valor-total">$--</div>
+                        <div class="card-change positive">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
+                            </svg>
+                            Inventario valorizado
+                        </div>
+                    </div>
+                    
+                    <div class="card animate-slide-up" style="animation-delay: 100ms;">
+                        <div class="card-header">
+                            <span class="card-title">Stock Bajo</span>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent-warning)" stroke-width="2">
+                                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                                <line x1="12" y1="9" x2="12" y2="13"/>
+                                <line x1="12" y1="17" x2="12.01" y2="17"/>
+                            </svg>
+                        </div>
+                        <div class="card-value" id="stat-stock-bajo">--</div>
+                        <div class="card-change negative">
+                            Requiere atención
+                        </div>
+                    </div>
+                    
+                    <div class="card animate-slide-up" style="animation-delay: 150ms;">
+                        <div class="card-header">
+                            <span class="card-title">Agotados</span>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent-error)" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <line x1="15" y1="9" x2="9" y2="15"/>
+                                <line x1="9" y1="9" x2="15" y2="15"/>
+                            </svg>
+                        </div>
+                        <div class="card-value" id="stat-agotados">--</div>
+                        <div class="card-change negative">
+                            Sin stock
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Artículos Recientes Table -->
+                <div class="table-container animate-slide-up" style="animation-delay: 200ms;">
+                    <div class="table-header">
+                        <h3 class="table-title">Artículos Recientes</h3>
+                        <div class="table-actions">
+                            <button class="btn btn-secondary" onclick="cargarArticulos()">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="23 4 23 10 17 10"/>
+                                    <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/>
+                                </svg>
+                                Actualizar
+                            </button>
+                            <button class="btn btn-primary" onclick="abrirModalArticulo()">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="12" y1="5" x2="12" y2="19"/>
+                                    <line x1="5" y1="12" x2="19" y2="12"/>
+                                </svg>
+                                Nuevo Artículo
+                            </button>
+                        </div>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Categoría</th>
+                                <th>Stock</th>
+                                <th>Precio</th>
+                                <th>Estado</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="articulos-table-body">
+                            <tr>
+                                <td colspan="6" style="text-align: center; padding: 40px;">
+                                    <div class="skeleton" style="width: 200px; height: 20px; margin: 0 auto;"></div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Artículos Page -->
+            <div class="page" id="page-articulos" style="display: none;">
+                <header class="page-header">
+                    <div>
+                        <h1 class="page-title">Artículos</h1>
+                        <p class="page-subtitle">Gestiona tu inventario de productos</p>
+                    </div>
+                    <button class="btn btn-gradient" onclick="abrirModalArticulo()">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="12" y1="5" x2="12" y2="19"/>
+                            <line x1="5" y1="12" x2="19" y2="12"/>
+                        </svg>
+                        Nuevo Artículo
+                    </button>
+                </header>
+                
+                <div class="table-container">
+                    <div class="table-header">
+                        <div class="search-container">
+                            <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="11" cy="11" r="8"/>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                            </svg>
+                            <input type="text" class="search-input" placeholder="Buscar artículos..." id="buscar-articulo">
+                        </div>
+                        <div class="table-actions">
+                            <select class="input" style="width: auto;" id="filtro-categoria">
+                                <option value="">Todas las categorías</option>
+                            </select>
+                        </div>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Descripción</th>
+                                <th>Categoría</th>
+                                <th>Stock</th>
+                                <th>Stock Mín.</th>
+                                <th>Precio</th>
+                                <th>Valor Total</th>
+                                <th>Estado</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="articulos-full-table-body">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Categorías Page -->
+            <div class="page" id="page-categorias" style="display: none;">
+                <header class="page-header">
+                    <div>
+                        <h1 class="page-title">Categorías</h1>
+                        <p class="page-subtitle">Organiza tus artículos por categorías</p>
+                    </div>
+                    <button class="btn btn-gradient" onclick="abrirModalCategoria()">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="12" y1="5" x2="12" y2="19"/>
+                            <line x1="5" y1="12" x2="19" y2="12"/>
+                        </svg>
+                        Nueva Categoría
+                    </button>
+                </header>
+                
+                <div class="stats-grid" id="categorias-grid">
+                </div>
+            </div>
+            
+            <!-- Movimientos Page -->
+            <div class="page" id="page-movimientos" style="display: none;">
+                <header class="page-header">
+                    <div>
+                        <h1 class="page-title">Movimientos de Stock</h1>
+                        <p class="page-subtitle">Registra entradas y salidas de inventario</p>
+                    </div>
+                    <div style="display: flex; gap: var(--spacing-sm);">
+                        <button class="btn btn-secondary" onclick="abrirModalMovimiento('ENTRADA')">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="12" y1="19" x2="12" y2="5"/>
+                                <polyline points="5 12 12 5 19 12"/>
+                            </svg>
+                            Entrada
+                        </button>
+                        <button class="btn btn-gradient" onclick="abrirModalMovimiento('SALIDA')">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="12" y1="5" x2="12" y2="19"/>
+                                <polyline points="19 12 12 19 5 12"/>
+                            </svg>
+                            Salida
+                        </button>
+                    </div>
+                </header>
+                
+                <div class="table-container">
+                    <div class="table-header">
+                        <h3 class="table-title">Movimientos Recientes</h3>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Fecha</th>
+                                <th>Artículo</th>
+                                <th>Tipo</th>
+                                <th>Cantidad</th>
+                                <th>Stock Anterior</th>
+                                <th>Stock Nuevo</th>
+                                <th>Motivo</th>
+                            </tr>
+                        </thead>
+                        <tbody id="movimientos-table-body">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <!-- Modal Artículo -->
+    <div class="modal-overlay" id="modal-articulo">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modal-articulo-titulo">Nuevo Artículo</h3>
+                <button class="modal-close" onclick="cerrarModal('modal-articulo')">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"/>
+                        <line x1="6" y1="6" x2="18" y2="18"/>
+                    </svg>
+                </button>
+            </div>
+            <form id="form-articulo" onsubmit="guardarArticulo(event)">
+                <div class="modal-body">
+                    <input type="hidden" id="articulo-id">
+                    <div class="input-group">
+                        <label class="input-label">Nombre *</label>
+                        <input type="text" class="input" id="articulo-nombre" required placeholder="Nombre del artículo">
+                    </div>
+                    <div class="input-group">
+                        <label class="input-label">Descripción</label>
+                        <input type="text" class="input" id="articulo-descripcion" placeholder="Descripción opcional">
+                    </div>
+                    <div class="input-group">
+                        <label class="input-label">Categoría *</label>
+                        <select class="input" id="articulo-categoria" required>
+                            <option value="">Seleccionar categoría</option>
+                        </select>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-md);">
+                        <div class="input-group">
+                            <label class="input-label">Stock Inicial *</label>
+                            <input type="number" class="input" id="articulo-stock" required min="0" value="0">
+                        </div>
+                        <div class="input-group">
+                            <label class="input-label">Stock Mínimo *</label>
+                            <input type="number" class="input" id="articulo-stock-minimo" required min="0" value="10">
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label class="input-label">Precio Unitario *</label>
+                        <input type="number" class="input" id="articulo-precio" required min="0" step="0.01" placeholder="0.00">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="cerrarModal('modal-articulo')">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Modal Categoría -->
+    <div class="modal-overlay" id="modal-categoria">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title">Nueva Categoría</h3>
+                <button class="modal-close" onclick="cerrarModal('modal-categoria')">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"/>
+                        <line x1="6" y1="6" x2="18" y2="18"/>
+                    </svg>
+                </button>
+            </div>
+            <form id="form-categoria" onsubmit="guardarCategoria(event)">
+                <div class="modal-body">
+                    <div class="input-group">
+                        <label class="input-label">Nombre *</label>
+                        <input type="text" class="input" id="categoria-nombre" required placeholder="Nombre de la categoría">
+                    </div>
+                    <div class="input-group">
+                        <label class="input-label">Descripción</label>
+                        <input type="text" class="input" id="categoria-descripcion" placeholder="Descripción opcional">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="cerrarModal('modal-categoria')">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Modal Movimiento -->
+    <div class="modal-overlay" id="modal-movimiento">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modal-movimiento-titulo">Registrar Movimiento</h3>
+                <button class="modal-close" onclick="cerrarModal('modal-movimiento')">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"/>
+                        <line x1="6" y1="6" x2="18" y2="18"/>
+                    </svg>
+                </button>
+            </div>
+            <form id="form-movimiento" onsubmit="guardarMovimiento(event)">
+                <div class="modal-body">
+                    <input type="hidden" id="movimiento-tipo">
+                    <div class="input-group">
+                        <label class="input-label">Artículo *</label>
+                        <select class="input" id="movimiento-articulo" required>
+                            <option value="">Seleccionar artículo</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label class="input-label">Cantidad *</label>
+                        <input type="number" class="input" id="movimiento-cantidad" required min="1" value="1">
+                    </div>
+                    <div class="input-group">
+                        <label class="input-label">Motivo</label>
+                        <input type="text" class="input" id="movimiento-motivo" placeholder="Razón del movimiento">
+                    </div>
+                    <div class="input-group">
+                        <label class="input-label">Referencia</label>
+                        <input type="text" class="input" id="movimiento-referencia" placeholder="Ej: Factura #123">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="cerrarModal('modal-movimiento')">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Registrar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Toast Container -->
+    <div class="toast-container" id="toast-container"></div>
+    
+    <script src="/js/app.js"></script>
+</body>
+</html>
