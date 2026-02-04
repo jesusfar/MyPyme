@@ -50,17 +50,43 @@ cd MyPyme
 ./mvnw spring-boot:run -Dspring-boot.run.profiles=dev
 ```
 
-## 🐳 Docker (Recomendado)
+## 🐳 Ejecución con Docker (Recomendado)
 
-Ejecuta toda la aplicación (Backend + Frontend + Base de Datos) con un solo comando:
+Docker es la forma más sencilla de ejecutar la aplicación, ya que configura automáticamente tanto el servidor (Spring Boot) como la base de datos (MySQL).
+
+### Prerrequisitos
+- Tener instalado **Docker Desktop** (Windows/Mac) o Docker Engine (Linux).
+
+### Pasos para ejecutar
+
+1. Abre una terminal en la carpeta del proyecto.
+2. Ejecuta el siguiente comando para construir y levantar los contenedores:
 
 ```bash
 docker-compose up -d --build
 ```
+> **Nota**: La primera vez puede tardar unos minutos en descargar las imágenes y compilar el proyecto.
 
-Esto levantará:
-- **Aplicación**: http://localhost:8080
-- **Base de Datos**: MySQL 8.0 (Puerto 3307)
+3. Una vez finalizado, accede a la aplicación:
+   - **URL**: http://localhost:8080
+   - **Base de Datos**: Puerto 3307 (Usuario: `root`, Password: `root`)
+
+### Comandos Útiles
+
+- **Ver logs en tiempo real**:
+  ```bash
+  docker-compose logs -f
+  ```
+
+- **Detener la aplicación**:
+  ```bash
+  docker-compose down
+  ```
+
+- **Reconstruir si haces cambios en el código**:
+  ```bash
+  docker-compose up -d --build
+  ```
 
 
 ## 📡 Endpoints API
