@@ -96,4 +96,4 @@ Este proyecto está bajo la Licencia MIT.
 
 ## 👨‍💻 Autor
 
-Desarrollado como sistema de gestión de inventario para PyMEs.
+Jesús Fariña.
